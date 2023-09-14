@@ -1,0 +1,273 @@
+{% extends 'partials/task_base.html'%}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+{% block kanban%}
+<body>
+
+<div class="main-container">
+
+    <div class="body">
+        <div class="ver-tool-bar flex-col">
+
+            <div class="tol-1 flex-col">
+                <h3>Title of 1 </h3>
+                Lorem, ipsum dolor sit amet
+                excepturi incidunt eveniet sunt,
+                 sequi quis hic? first vertical div
+            </div>
+            <div class="tol-1 flex-col">
+                <h3>Title of 2 </h3>
+                Lorem ipsum dolor sit amet
+                consectetur adipisicing elit. Pariatur
+                quibusdam quia voluptas illum esse,
+            </div>
+            <div class="tol-1 flex-col">
+                <h3>Title of 3</h3>
+                Lorem ipsum dolor sit amet
+                consectetur adipisicing elit. Pariatur
+                third vertical div
+            </div>
+        </div>
+        <div class="body-container flex-col">
+            <div class="edit-bar">
+                <div class="span-tool-bar">This is a tool bar for body
+                    <div id="new-category-form" class="new-task" >
+                        <div class="card-header">
+                            <strong>Inline</strong> Form
+                        </div>
+                        <div class="card-body card-block" >
+                            <form id="category-form"  action="" method="post" class="form-inline">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label for="exampleInputName2" class="pr-1  form-control-label">Category Name</label>
+                                    <input type="text" id="category-name" placeholder="Jane Doe" name="categoryName" required="" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail2" class="px-1  form-control-label">Category Description</label>
+                                    <input type="text" id="category-description" placeholder="Description" name="categoryDesc" required="" class="form-control">
+                                </div>
+                                
+                            
+                        </div>
+                        <div class="card-footer">
+                            <button id="btn-save-category" type="submit" class="btn btn-primary btn-sm">
+                                <i class="fa fa-dot-circle-o"> </i> Save
+                            </button>
+                            <button id="close-category" type="reset" class="btn btn-danger btn-sm">
+                                <i class="fa fa-ban"></i> Close
+                            </button>
+                        </form>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="form-group">
+                    <div id="new-category"  class ="form-btn btn btn-success btn-sm" >New Category</div>
+                    <div id="update-task-stack" onclick="update_tasks_bar()" class ="form-btn btn btn-success btn-sm" >Refresh Tasks</div>
+
+                    </div>
+                
+<!-- ajax creat new category  -->
+
+                
+                </div>
+            </div>
+            <div class="body-flex-row flex-row">
+                <div class="col-todo-task1 col-card">
+                    <div class="task-bar-header">
+                        <h3>Task stack</h3>
+                        <div id="add-task1" class="add">
+                            <div id="open-popup"   class="open-popup">
+                            <span   class="add glyphicon glyphicon-plus"  >+</span>
+                        </div>
+                    </div>
+                    </div>
+
+
+                    <div id="task-stack" class="new-task-body">
+
+                        <div id="task-1" class="task" draggable="true">
+                            <div class="card border-light mb-3" style="max-width: 90%">
+                                <div class="card-header">Header</div>
+                                <div class="card-body">
+                                    <!-- <img src="" alt=""> -->
+                                    <h5 class="card-title">Light card title</h5>
+                                    <p class="card-text">Some quick example text to build on the card title and make up
+                                        the bulk of the card's content.</p>
+                                </div>
+                                <div class="card-footer">
+                                    <ul class="footer-list">
+                                        <li class="ls-item">first </li>
+                                        <li class="ls-item">second </li>
+                                        <li class="ls-item">third</li>
+                                        <li class="ls-item">third</li>
+
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+                    </div>
+                </div>
+                <div class="col-todo-task1 col-card">
+                    <div class="task-bar-header">
+                        <h3>Working On Tasks</h3>
+                        <div id="add-task2" class="add" >
+                            <span class="add">+</span>
+                        </div>
+                    </div>
+                    <div id="task-stack" class="new-task-body">
+
+
+                    </div>
+                </div>
+                <div class="col-todo-task1 col-card">
+                    <div class="task-bar-header">
+                        <h3>Done Tasks</h3>
+                        <div id="add-task3" class="add">
+                            <span class="add">+</span>
+                        </div>
+                    </div>
+                    <div id="task-stack" class="new-task-body">
+
+                    </div>
+                </div>
+
+
+            
+
+            </div>
+
+
+        </div>
+    </div>
+
+    
+
+
+
+
+</div>  
+
+
+
+</div>
+
+<!--    This a new Task creation form -->
+
+<div id="hidden-popup" class="new-task" >
+
+<div id="task-1" class="task-form" draggable="true">
+    <div class="card border-light mb-3" style="max-width:100% ; min-width:90%;" >
+        <div class="card-header">Header</div>
+    <div class="card-body">
+        <img src="" alt="">
+        <h5 class="card-title">Light card title</h5>
+    <form action="" id ="create-task" method="post"  enctype="multipart/form-data" class="form-horizontal">
+        {% csrf_token %}
+        <div class="row form-group">
+            <div class="col col-md-3">
+                <label class=" form-control-label">Author</label>
+                
+            </div>
+            <div class="col-12 col-md-9">
+                <p class="form-control-static">{{request.user.first_name}}  {{request.user.last_name}} </p>
+            </div>
+        </div>
+                        
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <i class="fa fa-envelope"></i>
+                </div>
+                <input type="text" id="id_header" name="tsk_header" placeholder="Header" class="form-control ">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <i class="fa fa-envelope"></i>
+                </div>
+                <input type="text" id="id_title" name="tsk_title" placeholder="Title" class="form-control ">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <i class="fa fa-envelope" style="margin-right: 10px;">  </i>
+                </div>
+                
+                <span id ="cat_input"> {{new_task_form.tsk_category}} </span>
+                
+                </div>
+                
+            </div>
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <i class="fa fa-envelope "> </i>
+                </div>
+                <textarea type="text" id="id_content" name="tsk_content" placeholder="Content" rows="5" class="form-control" > </textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-addon">
+                    <i class="fa fa-asterisk "></i>
+                </div>
+                <input type="date" id="id_end_time" name="end_time"  class ="form-control"></div>
+        </div>
+                            
+    
+    
+    <div> 
+        <button id="create_task" class ="form-btn btn btn-primary btn-sm"  type="submit">Save</button>
+    </form>
+        <button  class ="form-btn btn btn-danger btn-sm" id="close-add-task" type="reset"> Close</button>
+
+    </div>
+
+
+
+<!--  form of create category -->
+
+
+
+
+
+<!-- this is another task creation form -->
+<script src="{% static 'js/jquery-3.6.4.min.js' %}"> </script>
+<script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+ </script>
+
+
+
+
+
+
+
+
+</body>
+{% endblock%}
+
+</html>

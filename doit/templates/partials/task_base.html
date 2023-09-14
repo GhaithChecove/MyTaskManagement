@@ -1,0 +1,55 @@
+{% load i18n %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <html lang="en">
+        <head>
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <meta name="description" content="">
+            <meta name="author" content="">
+            <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style-overfloaw.css' %}">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link href="{% static 'css/startmin.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static '/css/main.css' %}">
+    
+    <!-- Morris Charts CSS -->
+    <link href="{% static 'css/morris.css' %}" rel="stylesheet">
+    
+    <!-- Custom Fonts -->
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <title>Document</title>
+        </head>
+        {% include 'partials/task_nav.html' %}
+
+{% block kanban %}
+
+
+{% endblock %}
+{% include 'partials/jscripts.html'%}
+<script src="{% static 'js/jquery.min.js' %}"></script>
+
+
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+        
+        <!-- Metis Menu Plugin JavaScript -->
+        <script src="{% static 'js/metisMenu.min.js' %}"></script>
+
+        <!-- Morris Charts JavaScript -->
+        <script src="{% static 'js/raphael.min.js' %}"></script>
+        <script src="{% static 'js/morris.min.js' %}"></script>
+        <script src="{% static 'js/morris-data.js' %}"></script>
+
+        <!-- Custom Theme JavaScript -->
+        <script src="{% static 'js/startmin.js' %}"></script>
+        
+
+        {% include 'partials/js_scripts.html'%} 
+</html>

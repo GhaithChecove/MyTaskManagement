@@ -1,0 +1,9 @@
+
+success:function(data) {
+                    if (data.from_is_valid){
+                        console.log('data is save');
+                        alert('saved');
+                    }else {
+                        $('#new-category-form').html(data.html_form);
+                    }
+                }
